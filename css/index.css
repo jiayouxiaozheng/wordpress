@@ -1,0 +1,8 @@
+ul,li{
+	list-style: none;
+}
+
+#root input,#root button,#root a{
+    color:black;
+    margin-right: 10px;
+}

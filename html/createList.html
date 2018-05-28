@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html5</title>
+	<link rel="stylesheet" href="./../css/createList.css">
+</head>
+<body>
+	   
+</body>
+</html>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	     $(function () {
+	     	var manHuaList=localStorage.getItem("manHuaList");
+	     	document.body.innerHTML=manHuaList;
+	     	setInterval(function () {
+	     		var newManHuaList=localStorage.getItem("manHuaList");
+	     		if(newManHuaList!=manHuaList){
+	     			manHuaList=newManHuaList;
+	     			document.body.innerHTML=newManHuaList;
+	     		}
+	     	},500);
+	     	// debugger;
+	     	// 关闭窗口事件
+	     	// window.onbeforeunload =function() {
+	     	// 	localStorage.removeItem("open");
+	     	// }
+	     })
+</script>

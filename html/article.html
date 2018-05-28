@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html5</title>
+  <link rel="stylesheet" href="./../css/article.css">
+</head>
+<body>
+	   <div class="content">
+	     	<div class="article-title"></div>
+	     	<div class="article-content"></div>
+	   </div>
+</body>
+</html>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	$(function(){ 
+	  //漫画详情
+      var detailsUrl=decodeURI(window.location.href);
+      var articleKey=["pageNum","pageSize","pageName","imgUrl","webType","articleListNum","articleNum"];
+      //详情url参数 value
+      var articleValue={};
+      //是否是漫画详情页面
+      var isArticle=false;
+      for(var i=0,len=articleKey.length;i<len;i++){
+          var key=articleKey[i];
+          //第一个参数位置
+          var keyIndex=detailsUrl.indexOf(key)+key.length+1;
+          //第一个参数结束 第二个的参数开始位置
+          var nextKeyIndex=detailsUrl.indexOf(articleKey[i+1])-1;
+          if(detailsUrl.indexOf(key)>0){
+             //如果不是最后一个就截取i到i+1个字符
+             i!=(len-1)?articleValue[key]=detailsUrl.slice(keyIndex,nextKeyIndex):articleValue[key]=detailsUrl.substr(keyIndex);
+             isArticle=true;
+          }else{
+            isArticle=false;
+          }
+          
+      }
+      debugger;
+      //是否是漫画详情页面
+      if(isArticle){
+      	//图片数组
+      	var imgArr=articleValue["imgUrl"].split("*");
+        //漫画名字
+	    var name=articleValue['pageName'];
+	    //页面章数
+	    var pageNum=parseInt(articleValue['pageNum']);
+      //上一章数
+      var lastPageNum=pageNum-1;
+      //下一章数
+      var nextPageNum=pageNum+1;
+
+	    //过滤章数
+	    formaterPageNum(name,pageNum);
+	    //最大章数
+	    var pageSize=parseInt(articleValue['pageSize']);
+	    //图片资源入口
+      var webType=articleValue['webType'];
+      //列表详情号码
+	    var articleListNum=articleValue['articleListNum'];
+	    //图片img
+	    var imgStr="";
+      	if(webType=="yantai"){
+      		
+	      	for (var i = 0; i <= 150; i++) {
+	      		for (var j = 0; j < imgArr.length; j++) {
+              switch(name){
+                case "绝世唐门漫画":
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
+                break;
+                default : imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
+                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
+                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DSM%2F'+i+'.jpg-mht.middle.webp" />';
+              }
+	      		}
+	      	}
+	    }else if(webType=="feiwan"){
+            // http://img.feiwan.net/yqcr/manhua/131/1.jpg
+            for (var i = 0; i <= 150; i++) {
+	      		for (var j = 0; j < imgArr.length; j++) {
+              switch(name){
+                case "全职猎人漫画":
+                     if( pageNum<30 ){
+                         imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"juan/"+i+'.jpg" />';
+                         imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"juan/"+i+'.png" />';
+                     }else{
+                         imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />';
+                         imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.png" />';
+                     }
+                     
+                break;
+                default : imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />';
+                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.png" />';
+              }
+              
+	      		}
+	      	}
+	    }
+       
+      //目录控件
+      var pageNumIndex=detailsUrl.indexOf("pageNum=");
+      var pageSizeIndex=detailsUrl.indexOf("&pageSize=");
+      //上一章链接
+      var lastPageUrl=detailsUrl.slice(0,pageNumIndex+8)+lastPageNum+detailsUrl.substr(pageSizeIndex);
+      //下一章链接     
+      var nextPageUrl=detailsUrl.slice(0,pageNumIndex+8)+nextPageNum+detailsUrl.substr(pageSizeIndex);
+      //目录链接
+      var listPageUrl='http://www.zhengwenjie.com/wordpress/archives/'+articleListNum;
+      //是否显示上一章下一章目录按钮
+      var lastDisPlay=(pageNum==1?"none":"block");
+      var nextDisPlay=(pageNum==pageSize?"none":"block");
+
+      imgStr+='<div class="list-box">'+
+           '<a href="'+lastPageUrl+'" class="last-page" style="display:'+lastDisPlay+'">上一章</a>'+
+           '<a href="'+listPageUrl+'" class="to-list-page">目录</a>'+
+           '<a href="'+nextPageUrl+'" class="next-page" style="display:'+nextDisPlay+'">下一章</a>'+
+        '</div>'
+	    
+      	//插入页面
+      	// debugger;
+      	$(".article-content").html(imgStr);
+      	$("html head title").html(name);
+      	$(".content .article-title").html(name+pageNum);
+      }
+
+       
+      //图片加载失败隐藏掉
+      $("img").error(function(){     
+      	$(this).remove(); 
+      }); 
+
+      //过滤樟数
+      function formaterPageNum(name,Num) {
+        switch(name){
+          case "砂与海漫画":
+               //砂与海漫画樟数补零
+               if(pageNum<10){
+                  pageNum="0"+pageNum;
+               }
+      
+               if(lastPageNum<10 && lastPageNum!=0){
+                  lastPageNum="0"+lastPageNum;
+               }
+      
+               if(nextPageNum<10 && nextPageNum!=0){
+                  nextPageNum="0"+nextPageNum;
+               }
+          break;
+        }
+      }
+     
+});
+</script>
+
+<!-- http://mhpic.mh51.com/comic/D%2F%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E6%8B%86%E5%88%86%E7%89%88%2F1%E8%AF%9D%2F1.jpg-mht.middle.webp
+http://mhpic.mh51.com/comic/D%2F%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E6%8B%86%E5%88%86%E7%89%88%2F1%E8%AF%9DSM%2F1.jpg-mht.middle.webp -->
+
+<!-- http://img.feiwan.net/yqcr/manhua/131/1.jpg
+http://img.feiwan.net/yqcr/manhua/1/7.jpg  -->
+
+<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1.jpg-mht.middle.webp -->
+<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1.jpg-mht.middle.webp -->
+<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1%E8%AF%9DGQ%2F1.jpg-mht.middle.webp -->
+<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1%E8%AF%9DGQ%2F0.jpg-mht.middle.webp -->

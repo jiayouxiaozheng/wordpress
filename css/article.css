@@ -1,0 +1,16 @@
+.list-box{
+    position: fixed;
+    top: 50%;
+    left: 10px;
+    margin-top: -80px;
+}
+
+.list-box a{
+    display: block;
+    background: #FF5E52;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration:none;
+    margin-bottom: 10px;
+    text-align: center;
+}
