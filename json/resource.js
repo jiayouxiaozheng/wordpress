@@ -25,17 +25,39 @@
     	  articleListNum:328,
     	  webUrl:"http://www.manhuatai.com/shayuhaizhige/"
 		},
+        {
+          name:"绝世唐门漫画",
+          type:"jueshitangmen",
+          source:"yantai",
+          imgUrl:[
+            "http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F"
+          ],
+          // articleUrl:"http://www.zhengwenjie.com/wordpress/shayuhai",
+          articleNum:402,
+          articleListNum:402,
+          webUrl:"http://www.manhuatai.com/jueshitangmen/"
+        },
+        {
+          name:"斗罗大陆漫画",
+          type:"douluo",
+          source:"yantai",
+          imgUrl:[
+            "http://mhpic.mh51.com/comic/D%2F%E6%96%97%E7%BD%97%E5%A4%A7%E9%99%86%E6%8B%86%E5%88%86%E7%89%88%2F"
+          ],
+          articleNum:451,
+          articleListNum:451,
+          webUrl:"http://www.manhuatai.com/douluodalu/"
+        },
 		{
-    	  name:"绝世唐门漫画",
-    	  type:"jueshitangmen",
+    	  name:"偷星九月天漫画",
+    	  type:"touxing",
     	  source:"yantai",
     	  imgUrl:[
-    	    "http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F"
+    	    "http://mhpic.mh51.com/comic/T%2F%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9%2F"
     	  ],
-    	  // articleUrl:"http://www.zhengwenjie.com/wordpress/shayuhai",
-    	  articleNum:402,
-    	  articleListNum:402,
-    	  webUrl:"http://www.manhuatai.com/jueshitangmen/"
+    	  articleNum:447,
+    	  articleListNum:447,
+    	  webUrl:"http://www.manhuatai.com/touxingjiuyuetian/"
 		},
 		{
     	  name:"一拳超人漫画",

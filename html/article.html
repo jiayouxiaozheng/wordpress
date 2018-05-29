@@ -37,7 +37,6 @@
           }
           
       }
-      debugger;
       //是否是漫画详情页面
       if(isArticle){
       	//图片数组
@@ -63,21 +62,38 @@
 	    var imgStr="";
       	if(webType=="yantai"){
       		
-	      	for (var i = 0; i <= 150; i++) {
+	      	for (var i = 0; i <= 120; i++) {
 	      		for (var j = 0; j < imgArr.length; j++) {
               switch(name){
                 case "绝世唐门漫画":
                      imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
                 break;
-                default : imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
+                case "斗破苍穹漫画":
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DSM%2F'+i+'.jpg-mht.middle.webp" />';
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
+                break;
+                case "砂与海漫画":
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DSM%2F'+i+'.jpg-mht.middle.webp" />';
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
+                break;
+                case "斗罗大陆漫画":
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
+                break;
+                case "偷星九月天漫画":
+                     imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
+                break;
+                default : imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DSM%2F'+i+'.jpg-mht.middle.webp" />';
+                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
                           imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
-                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DSM%2F'+i+'.jpg-mht.middle.webp" />';
               }
 	      		}
 	      	}
 	    }else if(webType=="feiwan"){
             // http://img.feiwan.net/yqcr/manhua/131/1.jpg
-            for (var i = 0; i <= 150; i++) {
+            for (var i = 0; i <= 120; i++) {
 	      		for (var j = 0; j < imgArr.length; j++) {
               switch(name){
                 case "全职猎人漫画":
@@ -147,19 +163,23 @@
                   nextPageNum="0"+nextPageNum;
                }
           break;
+          case "偷星九月天漫画":
+               //漫画樟数补零
+               if(pageNum<10){
+                  pageNum="0"+pageNum;
+               }
+      
+               if(lastPageNum<10 && lastPageNum!=0){
+                  lastPageNum="0"+lastPageNum;
+               }
+      
+               if(nextPageNum<10 && nextPageNum!=0){
+                  nextPageNum="0"+nextPageNum;
+               }
+          break;
         }
       }
      
 });
 </script>
 
-<!-- http://mhpic.mh51.com/comic/D%2F%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E6%8B%86%E5%88%86%E7%89%88%2F1%E8%AF%9D%2F1.jpg-mht.middle.webp
-http://mhpic.mh51.com/comic/D%2F%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E6%8B%86%E5%88%86%E7%89%88%2F1%E8%AF%9DSM%2F1.jpg-mht.middle.webp -->
-
-<!-- http://img.feiwan.net/yqcr/manhua/131/1.jpg
-http://img.feiwan.net/yqcr/manhua/1/7.jpg  -->
-
-<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1.jpg-mht.middle.webp -->
-<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1.jpg-mht.middle.webp -->
-<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1%E8%AF%9DGQ%2F1.jpg-mht.middle.webp -->
-<!-- http://mhpic.mh51.com/comic/J%2F%E7%BB%9D%E4%B8%96%E5%94%90%E9%97%A8%2F145%E8%AF%9DGQ%2F1%E8%AF%9DGQ%2F0.jpg-mht.middle.webp -->
