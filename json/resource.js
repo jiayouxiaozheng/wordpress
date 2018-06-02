@@ -102,16 +102,16 @@
     	  articleListNum:386,
     	  webUrl:"http://ssg.feiwan.net/xiangguan/"
 		},{
-          name:"全职猎人漫画",
-          type:"lieren",
-          source:"feiwan",
-          imgUrl:[
-            "http://img.feiwan.net/hunter/manhua/"
-          ],
-          articleNum:395,
-          articleListNum:395,
-          webUrl:"http://hunter.feiwan.net/manhua/"
-        },{
+      name:"全职猎人漫画",
+      type:"lieren",
+      source:"feiwan",
+      imgUrl:[
+        "http://img.feiwan.net/hunter/manhua/"
+      ],
+      articleNum:395,
+      articleListNum:395,
+      webUrl:"http://hunter.feiwan.net/manhua/"
+    },{
     	  name:"进击的巨人漫画",
     	  type:"juren",
     	  source:"feiwan",
@@ -121,10 +121,40 @@
     	  articleNum:464,
     	  articleListNum:464,
     	  webUrl:"http://juren.feiwan.net/manhua/"
-		}
+		},{
+        name:"不死者之王漫画",
+        type:"busizhe",
+        source:"feiwan",
+        imgUrl:[
+            "http://img.feiwan.net/overlord/manhua/"
+        ],
+        articleNum:469,
+        articleListNum:469,
+        webUrl:"http://overlord.feiwan.net/manhua/"
+    },{
+        name:"东京食尸鬼漫画",
+        type:"dongjingshishi",
+        source:"feiwan",
+        imgUrl:[
+            "http://img.feiwan.net/ssg/manhua/"
+        ],
+        articleNum:474,
+        articleListNum:474,
+        webUrl:"http://ssg.feiwan.net/manhua/"
+    },{
+        name:"名侦探柯南漫画",
+        type:"mingzhentan",
+        source:"feiwan",
+        imgUrl:[
+            "http://img.feiwan.net/conan/manhua/"
+        ],
+        articleNum:477,
+        articleListNum:477,
+        webUrl:"http://conan.feiwan.net/manhua/"
+    }
 	];
     
-    //主函数
+  //主函数
 	function ResourceFun() {
 		
 	}

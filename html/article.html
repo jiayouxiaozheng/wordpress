@@ -14,8 +14,8 @@
 </html>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-	$(function(){ 
-	  //漫画详情
+  $(function(){ 
+    //漫画详情
       var detailsUrl=decodeURI(window.location.href);
       var articleKey=["pageNum","pageSize","pageName","imgUrl","webType","articleListNum","articleNum"];
       //详情url参数 value
@@ -39,31 +39,31 @@
       }
       //是否是漫画详情页面
       if(isArticle){
-      	//图片数组
-      	var imgArr=articleValue["imgUrl"].split("*");
+        //图片数组
+        var imgArr=articleValue["imgUrl"].split("*");
         //漫画名字
-	    var name=articleValue['pageName'];
-	    //页面章数
-	    var pageNum=parseInt(articleValue['pageNum']);
+      var name=articleValue['pageName'];
+      //页面章数
+      var pageNum=parseInt(articleValue['pageNum']);
       //上一章数
       var lastPageNum=pageNum-1;
       //下一章数
       var nextPageNum=pageNum+1;
 
-	    //过滤章数
-	    formaterPageNum(name,pageNum);
-	    //最大章数
-	    var pageSize=parseInt(articleValue['pageSize']);
-	    //图片资源入口
+      //过滤章数
+      formaterPageNum(name,pageNum);
+      //最大章数
+      var pageSize=parseInt(articleValue['pageSize']);
+      //图片资源入口
       var webType=articleValue['webType'];
       //列表详情号码
-	    var articleListNum=articleValue['articleListNum'];
-	    //图片img
-	    var imgStr="";
-      	if(webType=="yantai"){
-      		
-	      	for (var i = 0; i <= 120; i++) {
-	      		for (var j = 0; j < imgArr.length; j++) {
+      var articleListNum=articleValue['articleListNum'];
+      //图片img
+      var imgStr="";
+        if(webType=="yantai"){
+          
+          for (var i = 0; i <= 80; i++) {
+            for (var j = 0; j < imgArr.length; j++) {
               switch(name){
                 case "绝世唐门漫画":
                      imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
@@ -97,13 +97,24 @@
                           imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9D%2F'+i+'.jpg-mht.middle.webp" />';
                           imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+'%E8%AF%9DGQ%2F'+i+'.jpg-mht.middle.webp" />';
               }
-	      		}
-	      	}
-	    }else if(webType=="feiwan"){
-            // http://img.feiwan.net/yqcr/manhua/131/1.jpg
-            for (var i = 0; i <= 120; i++) {
-	      		for (var j = 0; j < imgArr.length; j++) {
+            }
+          }
+      }else if(webType=="feiwan"){
+            var picMax=( name=="一拳超人漫画"?110:80 );
+            for (var i = 0; i <= picMax; i++) {
+            for (var j = 0; j < imgArr.length; j++) {
               switch(name){
+                case "一拳超人漫画":
+                         if( pageNum<=5 ) {
+                             imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.png" />';
+                         }else if( pageNum==130 ) {
+                             imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"gr"+"/"+i+'.jpg" />';
+                         }else {
+                             imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />';
+                             imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.png" />';
+                         }
+                         
+                break;
                 case "全职猎人漫画":
                      if( pageNum<30 ){
                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"juan/"+i+'.jpg" />';
@@ -117,13 +128,19 @@
                 case "进击的巨人漫画":
                          imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />'; 
                 break;
+                case "不死者之王漫画":
+                         imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />'; 
+                break;
+                case "东京食尸鬼漫画":
+                         imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />'; 
+                break;
                 default : imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.jpg" />';
                           imgStr+='<img width="100%" src="'+imgArr[j]+pageNum+"/"+i+'.png" />';
               }
               
-	      		}
-	      	}
-	    }
+            }
+          }
+      }
        
       //目录控件
       var pageNumIndex=detailsUrl.indexOf("pageNum=");
@@ -143,18 +160,18 @@
            '<a href="'+listPageUrl+'" class="to-list-page">目录</a>'+
            '<a href="'+nextPageUrl+'" class="next-page" style="display:'+nextDisPlay+'">下一章</a>'+
         '</div>'
-	    
-      	//插入页面
-      	// debugger;
-      	$(".article-content").html(imgStr);
-      	$("html head title").html(name);
-      	$(".content .article-title").html(name+pageNum);
+      
+        //插入页面
+        // debugger;
+        $(".article-content").html(imgStr);
+        $("html head title").html(name);
+        $(".content .article-title").html(name+pageNum);
       }
 
        
       //图片加载失败隐藏掉
       $("img").error(function(){     
-      	$(this).remove(); 
+        $(this).remove(); 
       }); 
 
       //过滤樟数
